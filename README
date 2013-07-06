@@ -1,0 +1,64 @@
+Exposition:
+Have you ever needed a ruby script to be running on a machine at all times?  Maybe it's sitting there listening for something; Maybe it's signaling to something at regular intervals.  Sometimes it's good to have these types of apps install as services.  Using this boilerplate will very much help you get started creating a x-platform service using ruby.  
+
+This is a template/ boilerplate for creating a cross platform service using ruby.  Basically, it allows you to install your ruby app and have it run as a service, and you don't need to worry about platform specific issues regarding installation and programming.  I guess it will be a bit of a framework...  Depending on the platform you deploy to, it will wrap your 'main' loop in a different daemonizing network.  And the 'install' commandline option will of course install via windows, or use sysinit startup scripts to get the job done.  
+
+As a demo, the boilerplate will install a service that simply writes to a log file every 5 seconds the string "Hello World".  
+
+On a windows system, you'll be able to right click "My Computer" click "Manage" from the drop down, and then...
+
+Services and Applications -> Services
+
+And you will see a list of services currently installed on your PC.  If you run `ruby_service_template install` you will have a service installed, named ruby_service_template that you can start and stop.  
+
+On windows you'll see a file `C:/Program Files/ruby_service_template/log.txt` which is the log file where you'll see "hello world"s showing up if you installed it right.  
+
+To uninstall the service, type "ruby_service_template uninstall" and the script will be removed.  You of course will have needed to install the ruby_service_template gem for any of that to work.  Great huh?  Now write your own gem by cloning this down from github, reinitializing the git repo (rm the .git file and then do `git init`) and finally, pick a name for your service.  The shortcut `bundle exec rake rename my_cool_gem` should rename all the stuff you need renamed to get it to work, then you just need to write your code and drop it into the main loop.  Maybe you'll write a separate, elegant ruby library and include it in this one as a gem?  
+
+
+
+==Fresh Install Sequence (~winxp or winvista)==
+
+1)  Install git (just to download)
+http://git-scm.com/download/win
+
+2)  Install ruby and then devkit 
+http://rubyinstaller.org/downloads/
+
+Devkit:  Extract to c:/devkit and then run c:/devkit/msys.bat
+
+
+    $  cd /c/devkit
+    $  ruby dk.rb init; ruby dk.rb install
+
+
+3)  Clone the repo to desired location
+
+    $  cd dev  # make a directory for development...
+    $  git clone https://github.com/TheNotary/ipfixer_client.git
+    $  cd ipfixer_client
+
+4)  Install bundler, and then install the bundle for this gem
+
+    $  gem install ruby-debug19 # due to bugs, do this...
+    # it will fail, but that's fine and allows us to install debugger-linecache thereafter...
+    # maybe it just needs linecache19 and possibly... ruby-debug-base19-0.11.25??
+    $  gem install bundler
+    $  bundle install
+
+
+5)  Install the gem intself
+
+    $  bundle exec rake install
+
+
+6)  Install the windows service (run cmd as admin on vista... win_key -> 'cmd' -> Ctrl+shft+enter)
+
+    $  ipfixer install
+
+It will prompt you to enter: 
+  -Any server configuration data you specify in the installer.rb's method prompt_user_for_configurations (or something like that...)
+
+A configuration file can be created... at `c:/it/ipfixer/ipfixer.conf`  It can be modified at any time.  
+
+7)  Now start the service using computer management.  (sry, i'm in a rush...)

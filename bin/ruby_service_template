@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'ruby_service_template'
+
+class RubyServiceTemplateRunner < Thor
+  default_task :help
+  
+  desc "help", "Explains the gem's usage"
+  def help
+    RubyServiceTemplate.help
+  end
+  
+  desc "install", "Installs the client as a windows service"
+  def install
+    RubyServiceTemplate.install
+  end
+  
+  desc "uninstall", "Uninstalls the windows service"
+  def uninstall
+    RubyServiceTemplate.uninstall
+  end
+  
+  desc "client_svc", "This command should only be used by the windows service which allows the gem to be run"
+  def client_svc
+    RubyServiceTemplate.client_svc
+  end
+  
+  desc "start", "This command will start the service for you.  Before it will work, you must install the service via `ipfixer install`"
+  def start
+    RubyServiceTemplate.start
+  end
+end
+
+RubyServiceTemplateRunner.start

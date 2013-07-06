@@ -1,0 +1,25 @@
+########### BASIC ###############
+
+
+target_server: 192.168.0.11
+port: 80
+
+
+
+
+
+########### ADVANCED ###############
+
+# You can change which site you use to lookup your IP address
+ip_lookup_url: http://api.externalip.net/ip/
+
+# Place a url here and it will be run every time your dns changes.  Afraid.org for
+# example will let you change the ddns subdomain via a direct url you can place
+# here...
+# ddns_update_url: http://www.example.com/up_my_ip_stored_on_your_server
+
+ddns_update_url: 
+
+
+# there's also the debug mode, set debug to true to see more output in the log file located at c:\it\logs\ipfixer.log
+# debug: true

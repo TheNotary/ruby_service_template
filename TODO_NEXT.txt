@@ -1,0 +1,8 @@
+TODO:
+-Get the service main loop to install on a windows PC and then get it to print hello worlds to the log file
+-Refactor all of the variables into strings.rb
+
+
+LOG:
+-I think I can just install/ deploy this on a windows server and have it just work... if it doesn't just work, then I need to do debugging on why it would stop working...  I need to clean out the main loop on the service script before it will work though... it relies on gutted dependencies...
+
